@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>tomcat-test</display-name>
+	
+	<!-- 注册打印类加载器的listener -->
+	<listener>
+		<listener-class>com.segmentfault.lesson5.listener.ClassLoaderListener</listener-class>
+	</listener>
+	
+	<!-- JNDI  引入在tomcat context.xml文件中配置的数据库连接 -->
+	<resource-ref>
+		<res-ref-name>jdbc/TestDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<!-- JNDI 引入一个bean -->
+	<env-entry>
+		<env-entry-name>Bean</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>Hello World</env-entry-value>
+	</env-entry>
+	
+	<!-- 注册测试数据库连接的servlet -->
+	<servlet>
+		<servlet-name>JDBCTestServlet</servlet-name>
+		<servlet-class>com.segmentfault.lesson5.servlet.JDBCTestServlet</servlet-class>
+	</servlet>
+	<!--测试连接数据库的访问mapping url-->
+	<servlet-mapping>
+		<servlet-name>JDBCTestServlet</servlet-name>
+		<url-pattern>/test/jdbc</url-pattern>
+	</servlet-mapping>
+
+</web-app>
