@@ -36,7 +36,12 @@
     </databaseIdProvider>
 
     <mappers>
+        <!-- xml配置的mapper文件 -->
+        <mapper resource="mybatis/mappers/UserMapper_xml.xml" />
+        <!-- mybatis generator 生成的mapper文件 -->
         <mapper resource="mybatis/mappers/UserMapper.xml" />
+        <!-- mybatis annotation 要注册到这个全局配置中-->
+        <mapper class="com.segmentfault.springbootlesson7.mapper.AnnotationUserMapper" />
     </mappers>
 
 </configuration>
