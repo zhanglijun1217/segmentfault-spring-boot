@@ -22,6 +22,9 @@ public class CreditCard {
     @Column(name = "register_date")
     private Date registerDate;
 
+    @OneToOne(mappedBy = "creditCard", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Customer customer;
+
     public Long getId() {
         return id;
     }
@@ -44,5 +47,13 @@ public class CreditCard {
 
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
